@@ -9,10 +9,12 @@
 
 namespace Logo3\CRM\Domain\Model\Contact\Event;
 
+use Logo3\CRM\Domain\Model\Contact\ContactId;
+
 class ContactWasCreated
 {
 
-    /** @var string */
+    /** @var ContactId */
     public $id;
 
     /** @var  string */

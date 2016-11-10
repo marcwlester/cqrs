@@ -1,0 +1,17 @@
+Logo3\CRM\Domain\Model\Contact\Contact:
+  type: entity
+  table: contact
+  id:
+    id:
+      type: integer
+      generator: { strategy: AUTO }
+  fields:
+    firstName:
+      type: string
+      length: 255
+    lastName:
+      type: string
+      length: 255
+    email:
+      type: string
+      length: 255

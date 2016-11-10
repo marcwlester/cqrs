@@ -11,10 +11,12 @@ namespace Logo3\CRM\Domain\Model\Contact;
 
 use Logo3\Common\Domain\Model\EventRecorder;
 use Logo3\CRM\Domain\Model\Contact\Event\ContactWasCreated;
+use Logo3\CRM\Domain\Model\ContactAddress\Type;
 
 class Contact
 {
     use EventRecorder;
+
     /**
      * @var ContactId
      */
@@ -31,7 +33,7 @@ class Contact
     protected $lastName;
 
     /**
-     * @var
+     * @var string
      */
     protected $email;
 
@@ -58,7 +60,7 @@ class Contact
         return new static();
     }
 
-    public function addAddress($address, $type, $isPrimary)
+    public function addAddress($address, Type $type, $isPrimary)
     {
 
     }
