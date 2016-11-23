@@ -9,7 +9,9 @@
 namespace Logo3\CRM\Domain\Model\ContactAddress;
 
 
-class Type
+use Logo3\Common\Serializable;
+
+class Type implements Serializable
 {
     protected $value;
 
@@ -38,4 +40,15 @@ class Type
     }
 
 
+    public function serialize()
+    {
+        return array(
+            'value' => $this->value
+        );
+    }
+
+    public static function deserialize(array $data)
+    {
+        return new static($data['value']);
+    }
 }

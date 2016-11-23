@@ -1,5 +1,6 @@
 Logo3\CRM\Domain\Model\Contact\Contact:
   type: entity
+  repositoryClass: ogo3\CRM\Domain\Model\Contact\Adapter\Doctrine\ContactRepository
   table: contact
   id:
     id:

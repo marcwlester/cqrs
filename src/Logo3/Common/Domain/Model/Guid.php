@@ -9,9 +9,10 @@
 namespace Logo3\Common\Domain\Model;
 
 
+use Logo3\Common\Serializable;
 use Ramsey\Uuid\Uuid;
 
-class Guid
+class Guid implements Serializable
 {
     /**
      * @var string
@@ -46,5 +47,17 @@ class Guid
     public function getValue()
     {
         return $this->id;
+    }
+
+    public function serialize()
+    {
+        return array(
+            'id' => $this->id
+        );
+    }
+
+    public static function deserialize(array $data)
+    {
+        return new static($data['id']);
     }
 }

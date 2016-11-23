@@ -8,11 +8,12 @@
 
 namespace Logo3\CRM\Domain\Model\Contact\Adapter\Doctrine;
 
+use Doctrine\ORM\EntityRepository;
 use Logo3\CRM\Domain\Model\Contact\Contact;
 use Logo3\CRM\Domain\Model\Contact\ContactRepository as ContactRepositoryInterface;
 
 
-class ContactRepository implements ContactRepositoryInterface
+class ContactRepository extends EntityRepository implements ContactRepositoryInterface
 {
 
     /**
@@ -37,6 +38,8 @@ class ContactRepository implements ContactRepositoryInterface
      */
     public function save(Contact $contact)
     {
-        // TODO: Implement save() method.
+        $this->getEntityManager()->persist($contact);
+        $events = $contact->getRecordedEvents();
+
     }
 }

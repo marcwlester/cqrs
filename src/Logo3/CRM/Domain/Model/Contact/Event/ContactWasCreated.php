@@ -9,9 +9,10 @@
 
 namespace Logo3\CRM\Domain\Model\Contact\Event;
 
+use Logo3\Common\Serializable;
 use Logo3\CRM\Domain\Model\Contact\ContactId;
 
-class ContactWasCreated
+class ContactWasCreated implements Serializable
 {
 
     /** @var ContactId */
@@ -28,16 +29,36 @@ class ContactWasCreated
 
     /**
      * ContactWasCreated constructor.
-     * @param $id
-     * @param $firstName
-     * @param $lastName
-     * @param $email
+     * @param ContactId $id
+     * @param string $firstName
+     * @param string $lastName
+     * @param string $email
      */
-    public function __construct($id, $firstName, $lastName, $email)
+    public function __construct(ContactId $id, $firstName, $lastName, $email)
     {
         $this->id = $id;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
+    }
+
+    public function serialize()
+    {
+        return array(
+            'id' => $this->id->serialize(),
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'email' => $this->email
+        );
+    }
+
+    public static function deserialize(array $data)
+    {
+        return new static(
+            ContactId::deserialize($data['id']),
+            $data['firstName'],
+            $data['lastName'],
+            $data['email']
+        );
     }
 }
